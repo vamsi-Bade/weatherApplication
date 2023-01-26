@@ -23,7 +23,11 @@ const modifyDescription = (description) => (
 function Map({pageNum}) {
   // The useEffect function will fetch the data from the API we created and store it in the variable Backend Data
     useEffect(()=>{
-        fetch(`/api?page=${pageNum}&limit=10`).then(
+        fetch(`/api?page=${pageNum}&limit=10`,{
+          headers:{
+              "accepts":"application/json"
+          }
+      }).then(
           response => response.json()
         ).then(
           data=>{
