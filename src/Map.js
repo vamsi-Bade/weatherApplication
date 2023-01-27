@@ -1,12 +1,14 @@
 import {MapContainer,TileLayer,Marker,Popup} from 'react-leaflet';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import {Icon} from 'leaflet';
 import { RotatingLines } from 'react-loader-spinner';
 const position = [22.5937, 78.9629]
 
+const baseURL = "http://localhost:5000";
 
 const customIcon = new Icon({
-  iconUrl: "/marker.png",
+  iconUrl: "/public/Marker.png",
   iconSize: [33, 45],
   iconAnchor:[17,46],
   popupAnchor:[3,-46]
@@ -15,28 +17,19 @@ const customIcon = new Icon({
 
 const modifyDescription = (description) => (
 
-
  description.charAt(0).toUpperCase() + description.slice(1)
 
 )
 // The map function will return the component
 function Map({pageNum}) {
   // The useEffect function will fetch the data from the API we created and store it in the variable Backend Data
-    useEffect(()=>{
-        fetch(`/api?page=${pageNum}&limit=10`,{
-          headers:{
-              "accepts":"application/json"
-          }
-      }).then(
-          response => response.json()
-        ).then(
-          data=>{
-            setBackendData(data)
-          }
-        )
+  useEffect(()=>{
+    axios.get(`${baseURL}/api?page=${pageNum}&limit=10`).then((response) => {
+      setBackendData(response.data)
+    });
+  },[pageNum])
 
-      },[pageNum])
-      const [backendData,setBackendData]=useState([{}]);
+    const [backendData,setBackendData]=useState([{}]);
 
   return (
     
@@ -59,7 +52,7 @@ function Map({pageNum}) {
   />
 
      {backendData.users && backendData?.users.map((user,i)=>(
-        <Marker position={[parseFloat(user.lat),parseFloat(user.long)]} icon={customIcon} >
+        <Marker position={[parseFloat(user.lat),parseFloat(user.long)]} icon={customIcon}>
     <Popup>
       <p key={i}><b>City:</b> {modifyDescription(user.city)}
         <br/>
