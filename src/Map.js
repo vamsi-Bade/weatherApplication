@@ -8,7 +8,7 @@ const position = [22.5937, 78.9629]
 const baseURL = "https://weatherapi-thty.onrender.com";
 
 const customIcon = new Icon({
-  iconUrl: "./marker.png",
+  iconUrl: "https://i.ibb.co/xfv8KsG/marker.png",
   iconSize: [33, 45],
   iconAnchor:[17,46],
   popupAnchor:[3,-46]
