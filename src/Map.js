@@ -5,7 +5,7 @@ import {Icon} from 'leaflet';
 import { RotatingLines } from 'react-loader-spinner';
 const position = [22.5937, 78.9629]
 
-const baseURL = "http://localhost:5000";
+const baseURL = "https://weatherapi-thty.onrender.com";
 
 const customIcon = new Icon({
   iconUrl: "/public/Marker.png",
