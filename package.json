@@ -1,5 +1,5 @@
 {
-  "homepage": "http://vamsi-Bade.github.io/weatherApplication",
+  
   "name": "client",
   "version": "0.1.0",
   "proxy": "https://weatherapi-thty.onrender.com",
